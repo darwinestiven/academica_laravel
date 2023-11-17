@@ -32,14 +32,45 @@ Route::get('/dashboard', [HomeController::class,'index' ]
 Route::get('/facultades/listado', [Facultades::class,'index' ] 
 )->middleware(['auth', 'verified'])->name('listado_facultades');
 
+Route::get('/facultades/registrar', [Facultades::class, 'form_registro']
+)->middleware(['auth', 'verified'])->name('form_registro_fac');
+
+Route::post('/facultades/registrar', [Facultades::class, 'registrar']
+)->middleware(['auth', 'verified'])->name('registrar_fac');
+
+
 Route::get('/programas/listado', [Programas::class,'index' ] 
 )->middleware(['auth', 'verified'])->name('listado_programas');
+
+Route::get('/programas/registrar', [Programas::class, 'form_registro']
+)->middleware(['auth', 'verified'])->name('form_registro_pro');
+
+Route::post('/programas/registrar', [Programas::class, 'registrar']
+)->middleware(['auth', 'verified'])->name('registrar_pro');
+
+
 
 Route::get('/docentes/listado', [Docentes::class,'index' ] 
 )->middleware(['auth', 'verified'])->name('listado_docentes');
 
+Route::get('/docentes/registrar', [Docentes::class, 'form_registro']
+)->middleware(['auth', 'verified'])->name('form_registro_doc');
+
+Route::post('/docentes/registrar', [Docentes::class, 'registrar']
+)->middleware(['auth', 'verified'])->name('registrar_doc');
+
+
+
 Route::get('/estudiantes/listado', [Estudiantes::class,'index' ] 
 )->middleware(['auth', 'verified'])->name('listado_estudiantes');
+
+Route::get('/estudiantes/registrar', [Estudiantes::class, 'form_registro']
+)->middleware(['auth', 'verified'])->name('form_registro_est');
+
+Route::post('/estudiantes/registrar', [Estudiantes::class, 'registrar']
+)->middleware(['auth', 'verified'])->name('registrar_est');
+
+
 
 Route::get('/materias/listado', [Materias::class,'index' ] 
 )->middleware(['auth', 'verified'])->name('listado_materias');
