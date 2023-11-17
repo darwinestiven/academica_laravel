@@ -39,6 +39,16 @@ Route::post('/facultades/registrar', [Facultades::class, 'registrar']
 )->middleware(['auth', 'verified'])->name('registrar_fac');
 
 
+Route::get('/facultades/editar/{id}' , [Facultades::class, 'form_edicion']
+)->middleware(['auth', 'verified'])->name('editar_fac');
+
+Route::post('/facultades/editar/{id}' , [Facultades::class, 'editar']
+)->middleware(['auth', 'verified'])->name('editar_facultad');
+
+Route::get('/facultades/eliminar/{id}', [Facultades::class, 'eliminar']
+)->middleware(['auth', 'verified'])->name('eliminar_fac');
+
+
 Route::get('/programas/listado', [Programas::class,'index' ] 
 )->middleware(['auth', 'verified'])->name('listado_programas');
 
@@ -74,8 +84,6 @@ Route::post('/estudiantes/registrar', [Estudiantes::class, 'registrar']
 
 Route::get('/materias/listado', [Materias::class,'index' ] 
 )->middleware(['auth', 'verified'])->name('listado_materias');
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

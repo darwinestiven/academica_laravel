@@ -34,8 +34,8 @@
       <td>{{$f->codfacultad}}</td>
       <td>{{$f->nomfacultad}}</td>
       <td>
-        <button type="button" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></button>
-        <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+        <a href="{{route('editar_fac', $f->codfacultad)}}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
+        <a href="{{route('eliminar_fac', $f->codfacultad)}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
       </td>
       @php
           $i = $i + 1;
