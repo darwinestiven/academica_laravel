@@ -21,25 +21,16 @@ class Facultades extends Controller
     public function registrar(Request $request){
         // Validar que no haya campos vacíos
         $request->validate([
-            'cod_facultad' => 'required',
+            'cod_facultad' => 'required|unique:facultad,codfacultad',
             'nom_facultad' => 'required',
         ]);
     
-        // Verificar si ya existe una facultad con el mismo código
-        $existingFaculty = Faculty::where('codfacultad', $request->input('cod_facultad'))->first();
-    
-        if ($existingFaculty) {
-            // Si ya existe, redirige con un mensaje de error
-            return redirect()->route('form_registro')->with('error', 'El código de facultad ya existe');
-        }
-    
-        // Si no existe, procede con el registro
         $facultad = new Faculty();
         $facultad->codfacultad = $request->input('cod_facultad');
         $facultad->nomfacultad = $request->input('nom_facultad');
         $facultad->save();
     
-        return redirect()->route('listado_facultades')->with('success', 'Facultad registrada correctamente');
+        return redirect()->route('listado_facultades')->with('success', 'Facultad registrada exitosamente');
     }
     public function form_edicion($id){
         $facultad = Faculty::findorFail($id);
@@ -49,14 +40,18 @@ class Facultades extends Controller
     public function editar(Request $request, $id){
         $facultad = Faculty::findorFail($id);
         $facultad->nomfacultad = $request->input('nom_facultad');
+        // Validar que no haya campos vacíos
+        $request->validate([
+            'nom_facultad' => 'required',
+        ]);
         $facultad->save();
-        return redirect()->route('listado_facultades');
+        return redirect()->route('listado_facultades')->with('info', 'Facultad editada exitosamente');
     }
 
     public function eliminar($id){
         $facultad = Faculty::findorFail($id);
         $facultad->delete();
-        return redirect()->route('listado_facultades');
+        return redirect()->route('listado_facultades')->with('danger', 'Facultad eliminada exitosamente');
     }
     
 }

@@ -9,44 +9,66 @@
 
 @section('content')
 
-<div style="text-align: right;">
-    <a href="/facultades/registrar" class="btn btn-success">Registrar</a>   
-</div>
-<br>
+    @if(session('success'))
+        <div class="alert alert-success hide-message">
+            {{ session('success') }}
+        </div>
+    @endif
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Codigo</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Opcion</th>
-    </tr>
-  </thead>
-  <tbody>
-    @php
-        $i = 1;
-    @endphp
-    
-    @foreach($faculty as $f)
-    <tr>
-      <th scope="row">{{$i}}</th>
-      <td>{{$f->codfacultad}}</td>
-      <td>{{$f->nomfacultad}}</td>
-      <td>
-        <a href="{{route('editar_fac', $f->codfacultad)}}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
-        <a href="{{route('eliminar_fac', $f->codfacultad)}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-      </td>
-      @php
-          $i = $i + 1;
-      @endphp
-    </tr>
-    @endforeach
-  </tbody>
-</table>
+    @if(session('info'))
+        <div class="alert alert-info hide-message">
+            {{ session('info') }}
+        </div>
+    @endif
+
+    @if(session('danger'))
+        <div class="alert alert-danger hide-message">
+            {{ session('danger') }}
+        </div>
+    @endif
+
+    <div style="text-align: right;">
+        <a href="/facultades/registrar" class="btn btn-success">Registrar</a>   
+    </div>
+    <br>
+
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Codigo</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Opcion</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+                $i = 1;
+            @endphp
+            
+            @foreach($faculty as $f)
+            <tr>
+            <th scope="row">{{$i}}</th>
+            <td>{{$f->codfacultad}}</td>
+            <td>{{$f->nomfacultad}}</td>
+            <td>
+                <a href="{{route('editar_fac', $f->codfacultad)}}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                <a href="{{route('eliminar_fac', $f->codfacultad)}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+            </td>
+            @php
+                $i = $i + 1;
+            @endphp
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 @stop
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script src="{{ asset('js/messages.js') }}"></script>
 @stop
 

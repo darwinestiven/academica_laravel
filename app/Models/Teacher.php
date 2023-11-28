@@ -9,5 +9,6 @@ class Teacher extends Model
 {
     protected $table = 'profesor';
     protected $primaryKey = 'codprofesor';
+    protected $fillable = ['codprofesor', 'nomprofesor', 'catprofesor', 'imagen'];
     public $timestamps = 'true';
 }

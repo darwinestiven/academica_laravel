@@ -29,6 +29,7 @@ Route::get('/', function () {
 Route::get('/dashboard', [HomeController::class,'index' ] 
 )->middleware(['auth', 'verified'])->name('dashboard');
 
+//Rutas Facultades
 Route::get('/facultades/listado', [Facultades::class,'index' ] 
 )->middleware(['auth', 'verified'])->name('listado_facultades');
 
@@ -37,6 +38,7 @@ Route::get('/facultades/registrar', [Facultades::class, 'form_registro']
 
 Route::post('/facultades/registrar', [Facultades::class, 'registrar']
 )->middleware(['auth', 'verified'])->name('registrar_fac');
+
 
 
 Route::get('/facultades/editar/{id}' , [Facultades::class, 'form_edicion']
@@ -49,6 +51,7 @@ Route::get('/facultades/eliminar/{id}', [Facultades::class, 'eliminar']
 )->middleware(['auth', 'verified'])->name('eliminar_fac');
 
 
+//Rutas Programas
 Route::get('/programas/listado', [Programas::class,'index' ] 
 )->middleware(['auth', 'verified'])->name('listado_programas');
 
@@ -60,6 +63,17 @@ Route::post('/programas/registrar', [Programas::class, 'registrar']
 
 
 
+Route::get('/programas/editar/{id}' , [Programas::class, 'form_edicion']
+)->middleware(['auth', 'verified'])->name('editar_pro');
+
+Route::post('/programas/editar/{id}' , [Programas::class, 'editar']
+)->middleware(['auth', 'verified'])->name('editar_programa');
+
+Route::get('/programas/eliminar/{id}', [Programas::class, 'eliminar']
+)->middleware(['auth', 'verified'])->name('eliminar_pro');
+
+
+//Rutas Docentes
 Route::get('/docentes/listado', [Docentes::class,'index' ] 
 )->middleware(['auth', 'verified'])->name('listado_docentes');
 
@@ -71,6 +85,17 @@ Route::post('/docentes/registrar', [Docentes::class, 'registrar']
 
 
 
+Route::get('/docentes/editar/{id}' , [Docentes::class, 'form_edicion']
+)->middleware(['auth', 'verified'])->name('editar_doc');
+
+Route::post('/docentes/editar/{id}' , [Docentes::class, 'editar']
+)->middleware(['auth', 'verified'])->name('editar_docente');
+
+Route::get('/docentes/eliminar/{id}', [Docentes::class, 'eliminar']
+)->middleware(['auth', 'verified'])->name('eliminar_doc');
+
+
+//Rutas Estudiantes
 Route::get('/estudiantes/listado', [Estudiantes::class,'index' ] 
 )->middleware(['auth', 'verified'])->name('listado_estudiantes');
 
@@ -82,6 +107,17 @@ Route::post('/estudiantes/registrar', [Estudiantes::class, 'registrar']
 
 
 
+Route::get('/estudiantes/editar/{id}' , [Estudiantes::class, 'form_edicion']
+)->middleware(['auth', 'verified'])->name('editar_est');
+
+Route::post('/estudiantes/editar/{id}' , [Estudiantes::class, 'editar']
+)->middleware(['auth', 'verified'])->name('editar_estudiante');
+
+Route::get('/estudiantes/eliminar/{id}', [Estudiantes::class, 'eliminar']
+)->middleware(['auth', 'verified'])->name('eliminar_est');
+
+
+//Rutas Materias
 Route::get('/materias/listado', [Materias::class,'index' ] 
 )->middleware(['auth', 'verified'])->name('listado_materias');
 

@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+
     <form action="{{ url('/estudiantes/registrar') }}" method="POST">
         @csrf
         <div class="mb-3">
@@ -56,10 +57,23 @@
                 @endforeach
             </select>
         </div>
+
+        @if($errors->any())
+            <div class="alert alert-danger hide-message" >
+                <p>El código ya existe o hay campos vacíos.</p>
+            </div>
+        @endif
+
         <button type="submit" class="btn btn-success">Registrar</button>
     </form>
+
+    
 @stop
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script src="{{ asset('js/messages.js') }}"></script>
 @stop
